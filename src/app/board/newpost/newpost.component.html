@@ -1,0 +1,35 @@
+
+<div *ngIf="postMovie"   class="img-preview-container">
+
+  <div style="align-items: center;"  >
+
+      <img style="object-fit: cover;display: block;margin-left: auto;margin-right: auto ;"
+       [src]=" selectedFile.src"/>
+       <div style="align-items: center;" class="form">
+
+          <form  style="align-items: center;" [formGroup]="form" class="login-form">
+              <div style="width:305px;display: block;margin-left: auto;margin-right: auto ;">
+                <label>
+                  <span>Title</span>
+                  <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="title"  placeholder="Movie Title"/>
+                </label>
+                <label>
+                  <span>Description</span>
+                  <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="description"  placeholder="Movie Descriotion"/>
+                </label>
+              </div>
+            <div style="width:305px;display: block;margin-left: auto;margin-right: auto ;" >
+              <label class="image-upload-container btn btn-bwm">
+                <span>Select Image</span>
+                <input class="hidden" #imageInput
+                      type="file"
+                      accept="image/*"
+                      (change)="processFile(imageInput)">
+              </label>
+              <button style="margin-left: 58px;" type="button" (click)="onSubmit()" class="btn btn-success">Post Movie</button>
+            </div>
+
+          </form>
+      </div>
+  </div>
+</div>
