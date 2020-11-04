@@ -13,6 +13,9 @@ import { NewpostComponent } from './board/newpost/newpost.component';
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +28,13 @@ import { NewpostComponent } from './board/newpost/newpost.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

@@ -9,7 +9,7 @@ import { Movie } from '../models/Movie';
 })
 export class MoviesService {
   baseUrl = 'https://muvirater.herokuapp.com/';
-  baseMovieUrl = `${this.baseUrl}api/movie/movies`;
+  baseMovieUrl = `${this.baseUrl}api/movie/movies/`;
   baseMovieCreateUrl =  `${this.baseUrl}api/newmovie`;
   headers;
   token;
@@ -46,6 +46,23 @@ export class MoviesService {
     return xhr.send(data);
   }
 
+  async rateMovie(rate: number, movieId: number) {
+    const value = await localStorage.getItem('authData') ;
+    const dic = JSON.parse(value);
+    const dicToken = dic.token;
+    this.token = dicToken;
+    const body = JSON.stringify({stars: rate});
+
+
+    const xhr = new XMLHttpRequest();
+    const url = `${this.baseMovieUrl}${movieId}/rate_movie/`
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader( 'Authorization', 'Token ' + dicToken );
+    xhr.setRequestHeader( 'Content-Type', 'application/json');
+    xhr.withCredentials = true;
+    return xhr.send(body);
+  }
+
 
   getMovies() {
     this. headers= new HttpHeaders({
@@ -56,7 +73,7 @@ export class MoviesService {
     return this.httpClient.get<Movie[]>(this.baseMovieUrl, {headers: this.headers});
   }
 
-  rateMovie(rate: number, movieId: number) {
+  raeMovie(rate: number, movieId: number) {
     const body = JSON.stringify({stars: rate});
     return this.httpClient.post(`${this.baseMovieUrl}${movieId}/rate_movie/`, body, {headers: this.headers});
   }

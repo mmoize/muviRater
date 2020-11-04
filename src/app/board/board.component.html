@@ -3,47 +3,57 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <div  class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-link active" >Home <span class="sr-only">(current)</span></a>
-      <a class="nav-link" (click)="onPost()">Add Movie</a>
-      <a class="nav-link" (click)="onloadMovies()">Load</a>
       <a class="nav-link"  (click)="onLogOut()">Log out</a>
 
     </div>
   </div>
   <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link disabled" (click)="onPost()">Post Movie</a>
+    <li *ngIf="!addingMovie"  (click)="onPost()" class="nav-item">
+      <a  class="nav-link disabled" (click)="onPost()">Post Movie</a>
+    </li>
+    <li *ngIf="addingMovie" (click)="onBackHome()"  class="nav-item">
+      <a  class="nav-link disabled" >Back</a>
     </li>
   </ul>
 </nav>
 
-<div class='layout'>
+<div *ngIf="postMovie"  class='layout'>
   <app-newpost [postMovie]="postMovie"></app-newpost>
+</div>
+
+<div *ngIf="postDetail" class='layout'>
+  <app-movie-detail [movieDetail]="movieDetail"></app-movie-detail>
 
 </div>
 
+<div *ngIf="!postDetail"  class="pins" style="margin-top: 60px;">
+    <div  >
+      <div (click)="onMovieDetail(movie)" id="columns" *ngFor="let movie of movieList" >
+        <figure>
+        <img [src]="movie.moviesimage_set[0].image">
+        <figcaption>
+          <h4>{{ movie.title }}</h4>
+        </figcaption>
+        <figcaption>
+          <div >
+            <i  [ngClass]="{'light-green': movie.avg_rating > 1}" class="material-icons">star</i>
+            <i  [ngClass]="{'light-green': movie.avg_rating > 2}" class="material-icons">star</i>
+            <i  [ngClass]="{'light-green': movie.avg_rating > 3}" class="material-icons">star</i>
+            <i  [ngClass]="{'light-green': movie.avg_rating > 5}" class="material-icons">star</i>
 
-    <!-- <div id="columns" *ngFor="let movie of movieList" >
+          </div>
+        </figcaption>
+        </figure>
+      </div>
+    </div>
+</div>
+
+<!-- <div id="columns" *ngFor="let movie of movieList" >
       <figure>
       <img [src]="movie.moviesimage_set[0].image">
       <figcaption>{{ movie.description }}</figcaption>
       </figure>
-
-
-    </div> -->
-
-
-    <div class="pins" style="margin-top: 60px;">
-      <div  >
-        <div id="columns" *ngFor="let movie of movieList" >
-          <figure>
-          <img [src]="movie.moviesimage_set[0].image">
-          <figcaption>{{ movie.description }}</figcaption>
-          </figure>
-        </div>
-
-
-      </div>
-    </div>
+     </div> -->

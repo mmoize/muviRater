@@ -10,8 +10,12 @@ import { Router } from '@angular/router';
 })
 export class BoardComponent implements OnInit {
   movieList;
+  movieDetail;
 
+  addingMovie= false;
   postMovie = false;
+  postDetail= false;
+
   constructor(
     private authservice: AuthService,
     private movieService: MoviesService,
@@ -39,14 +43,34 @@ export class BoardComponent implements OnInit {
   }
 
   onPost() {
-    this.postMovie = true;
-    if (!!this.postMovie) {
+
+    if (this.postMovie === false) {
       console.log('this is movies 1', this.postMovie);
       this.postMovie = true;
+      this.addingMovie = true;
     } else  {
       console.log('this is movies ', this.postMovie);
       this.postMovie = false;
     }
+
+
+  }
+
+  onBackHome() {
+    if (this.addingMovie === true) {
+      console.log('this is movies 1', this.addingMovie);
+      this.addingMovie = false;
+      this.postMovie = false;
+      this.postDetail = false;
+      this.addingMovie = false;
+    }
+  }
+
+  onMovieDetail(data) {
+    this.movieDetail = data;
+    this.postDetail = true;
+    this.addingMovie = true;
+
   }
 
 }

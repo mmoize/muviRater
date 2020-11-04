@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MoviesService } from './../movies.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movie-detail',
@@ -7,9 +8,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() movieDetail;
+  rateHovered = 0;
+
+
+  constructor(
+    private movieservice: MoviesService
+  ) { }
 
   ngOnInit(): void {
+    console.log('this ', this.movieDetail);
+  }
+
+  rateHover(rate) {
+    this.rateHovered = rate;
+  }
+
+  rateClicked(rate: number){
+    this.movieservice.rateMovie(rate, this.movieDetail.id).then(
+      result =>{
+        this.getDetails();
+        if (this.movieDetail.avg_rating === 0 ) {
+          this.movieDetail.avg_rating = rate;
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  getDetails(){
+    // this.apiService.getMovie(this.movie.id).subscribe(
+    //   (movie: Movie) => {
+    //     this.updateMovie.emit(movie);
+    //   },
+    //   error => console.log(error)
+    // );
   }
 
 }
