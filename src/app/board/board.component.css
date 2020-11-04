@@ -75,3 +75,14 @@
  #imgprev {
    height: 200px;
  }
+
+ .pin {
+  display: inline-block;
+  margin: 0 5px 5px;
+  padding: 5px;
+}
+
+.pins {
+  column-count: 3;
+  margin-top: 5px;
+}

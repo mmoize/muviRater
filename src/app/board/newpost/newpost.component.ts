@@ -67,7 +67,7 @@ export class NewpostComponent implements OnInit {
      const movieData = new FormData();
      movieData.append('title', this.form.value.title);
      movieData.append('description', this.form.value.description);
-     movieData.append('image', this.selectedFile.file );
+     movieData.append('image', this.selectedFile.file);
 
      this.movieservice.createPostListing(movieData).then(resData => {
        console.log('its been posted');

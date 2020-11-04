@@ -9,16 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
+  movieList;
 
   postMovie = false;
   constructor(
     private authservice: AuthService,
     private movieService: MoviesService,
     private router: Router ,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
-
+    this.onloadMovies();
   }
 
 
@@ -30,7 +33,8 @@ export class BoardComponent implements OnInit {
 
   onloadMovies() {
     this.movieService.getMovies().subscribe(res => {
-      console.log('this is movies', res);
+      this.movieList = res;
+
     });
   }
 
