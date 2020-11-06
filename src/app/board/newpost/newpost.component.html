@@ -1,36 +1,38 @@
 
-<div *ngIf="postMovie"   class="img-preview-container">
+<body style="height: 100vh;">
+  <div *ngIf="postMovie"   class="img-preview-container">
 
-  <div style="align-items: center;"  >
+    <div style="align-items: center;"  >
 
-      <img style="object-fit: cover;display: block;margin-left: auto;margin-right: auto ;"
-       [src]=" selectedFile.src"/>
-       <div style="align-items: center;" class="form">
+        <img style="object-fit: cover;display: block;margin-left: auto;margin-right: auto ;"
+         [src]=" selectedFile.src"/>
+         <div style="align-items: center;" class="form">
 
-          <form  style="align-items: center;" [formGroup]="form" class="login-form">
-              <div *ngIf="selectedFile"  style="width:305px;display: block;margin-left: auto;margin-right: auto ;">
-                <label>
-                  <span>Title</span>
-                  <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="title"  placeholder="Movie Title"/>
+            <form  style="align-items: center;" [formGroup]="form" class="login-form">
+                <div *ngIf="selectedFile"  style="width:305px;display: block;margin-left: auto;margin-right: auto ;">
+                  <label>
+                    <span>Title</span>
+                    <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="title"  placeholder="Movie Title"/>
+                  </label>
+                  <label>
+                    <span>Description</span>
+                    <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="description"  placeholder="Movie Descriotion"/>
+                  </label>
+                </div>
+              <div style="width:305px;display: block;margin-left: auto;margin-right: auto ;margin-top:20px" >
+                <label style="background-color: rgba(44, 165, 44, 0.932);" class="image-upload-container btn btn-bwm">
+
+                  <span >Select Image</span>
+                  <input class="hidden" #imageInput
+                        type="file"
+                        accept="image/*"
+                        (change)="processFile(imageInput)">
                 </label>
-                <label>
-                  <span>Description</span>
-                  <input style="width:300px;display: block;margin-left: auto;margin-right: auto ;" type="text" formControlName="description"  placeholder="Movie Descriotion"/>
-                </label>
+                <button  style="margin-left: 58px;background-color: rgba(44, 165, 44, 0.932);" type="button" (click)="onSubmit()" class="btn btn-success">Post Movie</button>
               </div>
-            <div style="width:305px;display: block;margin-left: auto;margin-right: auto ;" >
-              <label style="background-color: lightgreen;" class="image-upload-container btn btn-bwm">
 
-                <span >Select Image</span>
-                <input class="hidden" #imageInput
-                      type="file"
-                      accept="image/*"
-                      (change)="processFile(imageInput)">
-              </label>
-              <button  style="margin-left: 58px;background-color: rgb(15, 179, 15);" type="button" (click)="onSubmit()" class="btn btn-success">Post Movie</button>
-            </div>
-
-          </form>
-      </div>
+            </form>
+        </div>
+    </div>
   </div>
-</div>
+</body>

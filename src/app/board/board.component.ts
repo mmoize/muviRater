@@ -63,6 +63,7 @@ export class BoardComponent implements OnInit {
       this.postMovie = false;
       this.postDetail = false;
       this.addingMovie = false;
+      this.onloadMovies();
     }
   }
 

@@ -1,4 +1,4 @@
- <nav style="background-color: lightseagreen;" class="navbar navbar-expand-lg navbar-light bg-light">
+ <nav id="navy" class="navbar navbar-expand-lg ">
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,11 +10,11 @@
 
     </div>
   </div>
-  <ul class="nav justify-content-center">
-    <li *ngIf="!addingMovie"  (click)="onPost()" class="nav-item">
-      <a  class="nav-link disabled" (click)="onPost()">Post Movie</a>
+  <ul id="leftnav" class="nav justify-content-center">
+    <li id="leftnav" *ngIf="!addingMovie"  (click)="onPost()" class="nav-item">
+      <a  class="nav-link" (click)="onPost()">Post Movie</a>
     </li>
-    <li *ngIf="addingMovie" (click)="onBackHome()"  class="nav-item">
+    <li id="leftnav" *ngIf="addingMovie" (click)="onBackHome()"  class="nav-item">
       <a  class="nav-link disabled" >Back</a>
     </li>
   </ul>
@@ -29,15 +29,15 @@
 
 </div>
 
-<div *ngIf="!postDetail && !addingMovie"  class="pins" style="margin-top: 60px;">
-    <div  >
-      <div (click)="onMovieDetail(movie)" id="columns" *ngFor="let movie of movieList" >
-        <figure>
+<div  *ngIf="!postDetail && !addingMovie"  style="margin-left: 0px;margin-right: 0px;" class="pins" >
+    <div style="margin-left: 20px;" >
+      <div class="pin"   (click)="onMovieDetail(movie)" id="columns" *ngFor="let movie of movieList" >
+        <figure style="margin: 0px; border-radius: 0px 0px 15px 15px;border: 0px">
         <img [src]="movie.moviesimage_set[0].image">
         <figcaption>
           <h4>{{ movie.title }}</h4>
         </figcaption>
-        <figcaption>
+        <figcaption style="margin-left: 15px;">
           <div >
             <i  [ngClass]="{'light-green': movie.avg_rating > 1}" class="material-icons">star</i>
             <i  [ngClass]="{'light-green': movie.avg_rating > 2}" class="material-icons">star</i>

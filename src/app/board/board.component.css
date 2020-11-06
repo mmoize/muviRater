@@ -12,7 +12,8 @@
   src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
  }
  body {
-   background: url(//subtlepatterns.com/patterns/scribble_light.png);
+   /* background: url(//subtlepatterns.com/patterns/scribble_light.png); */
+   background-color: rgb(50, 201, 151);
    font-family: Calluna, Arial, sans-serif;
    min-height: 1000px;
  }
@@ -34,6 +35,7 @@
    transition: opacity .4s ease-in-out;
    display: inline-block;
    column-break-inside: avoid;
+
  }
 
  div#columns figure img {
@@ -84,5 +86,20 @@
 
 .pins {
   column-count: 3;
-  margin-top: 5px;
+  margin-top: 0px;
+  background-color: rgb(50, 201, 151)
+}
+
+
+.navbar  {
+  margin-bottom: 0px;
+  background-color: rgb(14, 187, 129)
+}
+
+#navbarNavAltMarkup {
+  background: transparent;
+}
+
+#leftnav {
+  background: transparent;
 }

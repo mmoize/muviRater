@@ -1,0 +1,9 @@
+.img-preview-container {
+  background-color: rgb(50, 201, 151)
+}
+body {
+  /* background: url(//subtlepatterns.com/patterns/scribble_light.png); */
+  background-color: rgb(50, 201, 151);
+  font-family: Calluna, Arial, sans-serif;
+  min-height: 1000px;
+}

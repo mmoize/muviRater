@@ -1,37 +1,39 @@
-<div>
-  <div class="card" style="width: 45rem;display: block;margin-left: auto;margin-right: auto ; ">
-    <img [src]="movieDetail.moviesimage_set[0].image" class="card-img-top" alt="...">
-    <!-- <div class="card-body">
-      <h6 class="card-title">{{movieDetail.user.username}}</h6>
-    </div > -->
-    <div class="card-body">
-      <i  [ngClass]="{'light-green': movieDetail.avg_rating > 1}" class="material-icons">star</i>
-      <i  [ngClass]="{'light-green': movieDetail.avg_rating > 2}" class="material-icons">star</i>
-      <i  [ngClass]="{'light-green': movieDetail.avg_rating > 3}" class="material-icons">star</i>
-      <i  [ngClass]="{'light-green': movieDetail.avg_rating > 5}" class="material-icons">star</i>
-      <p *ngIf="movieDetail.no_of_ratings > 0" >  number of votes : {{movieDetail.no_of_ratings}} </p>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{movieDetail.title}}</h5>
-      <!-- <p class="card-text">{{movieDetail.description}}</p> -->
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{movieDetail.description}}</li>
-      <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li> -->
-    </ul>
-    <div class="card-body">
-      <div>
-        <h5 style="font-weight: bold;" class="card-title">give it a rate</h5>
+<body style="height: 100%;background-color: rgb(50, 201, 151);">
+  <div>
+    <div class="card" style="width: 45rem;display: block;margin-left: auto;margin-right: auto ; ">
+      <img [src]="movieDetail.moviesimage_set[0].image" class="card-img-top" alt="...">
+      <!-- <div class="card-body">
+        <h6 class="card-title">{{movieDetail.user.username}}</h6>
+      </div > -->
+      <div class="card-body">
+        <i  [ngClass]="{'light-green': movieDetail.avg_rating > 1}" class="material-icons">star</i>
+        <i  [ngClass]="{'light-green': movieDetail.avg_rating > 2}" class="material-icons">star</i>
+        <i  [ngClass]="{'light-green': movieDetail.avg_rating > 3}" class="material-icons">star</i>
+        <i  [ngClass]="{'light-green': movieDetail.avg_rating > 5}" class="material-icons">star</i>
+        <p *ngIf="movieDetail.no_of_ratings > 0" >  number of votes : {{movieDetail.no_of_ratings}} </p>
       </div>
-      <i (click)="rateClicked(rate)"
-      *ngFor="let rate of [1,2,3,4,5]"
-       [ngClass]="{'purple': rateHovered >= rate}"
-        (mouseleave)="rateHovered = 0"
-        (mouseenter)="rateHover(rate)"
-         [ngClass]="{'orange': movieDetail.avg_rating < 1}"
-          class="material-icons">star</i>
+      <div class="card-body">
+        <h5 class="card-title">{{movieDetail.title}}</h5>
+        <!-- <p class="card-text">{{movieDetail.description}}</p> -->
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{movieDetail.description}}</li>
+        <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li> -->
+      </ul>
+      <div class="card-body">
+        <div>
+          <h5 style="font-weight: bold;" class="card-title">give it a rate</h5>
+        </div>
+        <i (click)="rateClicked(rate)"
+        *ngFor="let rate of [1,2,3,4,5]"
+         [ngClass]="{'purple': rateHovered >= rate}"
+          (mouseleave)="rateHovered = 0"
+          (mouseenter)="rateHover(rate)"
+           [ngClass]="{'orange': movieDetail.avg_rating < 1}"
+            class="material-icons">star</i>
+      </div>
     </div>
   </div>
-</div>
+</body>
 

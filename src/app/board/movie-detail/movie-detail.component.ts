@@ -27,6 +27,7 @@ export class MovieDetailComponent implements OnInit {
   rateClicked(rate: number){
     this.movieservice.rateMovie(rate, this.movieDetail.id).then(
       result =>{
+        console.log('this is results', result);
         this.getDetails();
         if (this.movieDetail.avg_rating === 0 ) {
           this.movieDetail.avg_rating = rate;
