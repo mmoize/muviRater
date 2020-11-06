@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "test-cef57": {
+      "hosting": {
+        "MovieRate": [
+          "test-cef57"
+        ]
+      }
+    }
+  }
+}

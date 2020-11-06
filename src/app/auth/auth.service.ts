@@ -64,9 +64,12 @@ export class AuthService {
   get userIsAuthenticated() {
     return this._user.asObservable().pipe(map(user => {
         if (user) {
+          console.log('its true')
           return  !!user.token;
         } else {
+          console.log('its false')
           return false;
+
         }
 
       })

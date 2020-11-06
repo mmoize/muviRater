@@ -6,7 +6,7 @@ import { BoardComponent } from './board/board.component';
 
 
 const routes: Routes = [
-  { path: '', component: BoardComponent,  canLoad: [AuthGuard] },
+  { path: '', component: BoardComponent,  canActivate: [AuthGuard] },
   { path: 'auth', component: AuthComponent },
 ];
 

@@ -10,6 +10,7 @@ import { BoardComponent } from './board/board.component';
 import { MovieDetailComponent } from './board/movie-detail/movie-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewpostComponent } from './board/newpost/newpost.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
@@ -32,7 +33,7 @@ import { NewpostComponent } from './board/newpost/newpost.component';
 
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
