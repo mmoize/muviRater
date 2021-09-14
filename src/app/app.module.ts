@@ -11,6 +11,8 @@ import { MovieDetailComponent } from './board/movie-detail/movie-detail.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewpostComponent } from './board/newpost/newpost.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -29,6 +31,12 @@ import { AuthGuard } from './auth/auth.guard';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
 
 
 
