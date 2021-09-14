@@ -8,7 +8,7 @@ import { Movie } from '../models/Movie';
   providedIn: 'root'
 })
 export class MoviesService {
-  baseUrl = 'https://muvirater.herokuapp.com/';
+  baseUrl = 'https://film-raters.herokuapp.com/';
   baseMovieUrl = `${this.baseUrl}api/movie/movies/`;
   baseMovieCreateUrl =  `${this.baseUrl}api/newmovie`;
   headers;

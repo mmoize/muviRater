@@ -156,12 +156,12 @@ export class AuthService {
 
   signup(email: string, password: string, username: string ) {
      return this.http.post<AuthResponseData>
-     ('https://muvirater.herokuapp.com/account/signup', { email, password, username }
+     ('https://film-raters.herokuapp.com/account/signup', { email, password, username }
     ).pipe(tap(this.setUserData.bind(this)));
   }
 
   login(username: string, password: string) {
-     return this.http.post<AuthResponseData>('https://muvirater.herokuapp.com/account/login', {username, password}
+     return this.http.post<AuthResponseData>('https://film-raters.herokuapp.com/account/login', {username, password}
     ).pipe(tap(this.setUserData.bind(this)));
   }
 
