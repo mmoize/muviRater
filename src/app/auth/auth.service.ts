@@ -1,4 +1,4 @@
-import * as jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -174,16 +174,17 @@ export class AuthService {
   }
 
   getTokenExpirationDate(token: string): Date {
-    const decoded = jwt_decode(token);
-    if (decoded.exp === undefined) { return null; }
+    // const decoded = jwt_decode(token);
+    var decoded = jwt_decode(token);
+    if (decoded['exp']=== undefined) { return null; }
     const date  = new Date(0);
-    date.setUTCSeconds(decoded.exp);
+    date.setUTCSeconds(decoded['exp']);
     return date;
   }
 
   getUserId(token: string) {
     const decoded = jwt_decode(token);
-    const userId = decoded.id;
+    const userId = decoded['id'];
     return userId;
   }
 
