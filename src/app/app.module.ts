@@ -43,7 +43,8 @@ import { PopoverModule } from "ngx-bootstrap/popover";
     BoardComponent,
     MovieDetailComponent,
     NewpostComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,7 @@ import { PopoverModule } from "ngx-bootstrap/popover";
       registrationStrategy: 'registerWhenStable:30000'
     }),
     BrowserAnimationsModule,
-
+    AuthModule,
     CommonModule,
     BrowserModule,
     FormsModule,

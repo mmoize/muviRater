@@ -32,6 +32,8 @@
               "src/styles.scss",
               "src/assets/css/nucleo-icons.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/assets/scss/blk-design-system.scss",
               "src/assets/demo/demo.css"
             ],
@@ -100,7 +102,13 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/css/nucleo-icons.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/scss/blk-design-system.scss",
+              "src/assets/demo/demo.css"
             ],
             "scripts": []
           }

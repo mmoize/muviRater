@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroupDirective } from '@angular/forms';
 import { Chart} from 'chart.js';
 
 @Component({
