@@ -1,5 +1,7 @@
 import { MoviesService } from './../movies.service';
 import { Component, Input, OnInit } from '@angular/core';
+import noUiSlider from "nouislider";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-detail',
@@ -8,17 +10,72 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MovieDetailComponent implements OnInit {
 
-  @Input() movieDetail;
-  rateHovered = 0;
+  starRating = 0;
 
+  isCollapsed = true;
+  focus;
+  focus1;
+  focus2;
+
+  @Input() movieDetail;
+  cardMovieDetail;
+  rateHovered = 0;
+  date = new Date();
+  pagination = 3;
+  pagination1 = 1;
 
   constructor(
-    private movieservice: MoviesService
-  ) { }
+    private movieservice: MoviesService,
+    private route: ActivatedRoute
+  ) { 
+    this.route.queryParams.subscribe(params => {
+      this.movieDetail = params
+      console.log("movie details page 112", this.movieDetail);
+      this.movieservice.getMovie(this.movieDetail.id).subscribe(movieData => {
+        console.log("movie details page 1123", movieData);
+        this.cardMovieDetail = movieData
+      })
+    })
+  }
 
   ngOnInit(): void {
-    console.log('this ', this.movieDetail);
+
+    this.cardMovieDetail = this.movieDetail
+
+
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("index-page");
+
+    var slider = document.getElementById("sliderRegular");
+
+    noUiSlider.create(slider, {
+      start: 40,
+      connect: false,
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+
+    var slider2 = document.getElementById("sliderDouble");
+
+    noUiSlider.create(slider2, {
+      start: [20, 60],
+      connect: true,
+      range: {
+        min: 0,
+        max: 100
+      }
+    });
+
   }
+
+
+  ngDoCheck() {
+    this.cardMovieDetail = this.movieDetail
+  }
+
+
 
   rateHover(rate) {
     this.rateHovered = rate;

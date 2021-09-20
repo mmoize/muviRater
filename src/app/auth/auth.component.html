@@ -88,7 +88,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home']"> Loggin </a>
+          <a class="nav-link" (click)="onSwitchAuthMode()" *ngIf="isLogin" [routerLink]="['/home']"> Signup </a>
+          <a class="nav-link" (click)="onSwitchAuthMode()" *ngIf="!isLogin" [routerLink]="['/home']"> Login </a>
         </li>
         <li class="nav-item">
           <a
@@ -200,7 +201,7 @@
                     src="assets/img/square1-red.png"
                   />
 
-                  <h4 class="card-title">Register</h4>
+                  <h4 class="card-title">Signup</h4>
                 </div>
                 <div class="card-body">
                   

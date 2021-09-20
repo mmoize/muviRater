@@ -8,7 +8,7 @@ id="navbar-top"
   <div class="navbar-translate">
     <a
       class="navbar-brand"
-      routerLink="['/home']"
+      routerLink="['']"
       placement="bottom"
       tooltip="Front=End: Angular and Back-End: Python"
     >
@@ -98,16 +98,10 @@ id="navbar-top"
         <i class="tim-icons icon-single-02"> </i>  Account
         </a>
         <div class="dropdown-menu dropdown-with-icons" *dropdownMenu>
-          <a
-            class="dropdown-item"
-            [routerLink]="['/new-movie-review']"
-          >
-            <i class="tim-icons icon-paper"> </i> Post Review
-          </a>
           <a class="dropdown-item" [routerLink]="['/profile']">
             <i class="tim-icons icon-single-02"> </i> Profile
           </a>
-          <a class="dropdown-item" [routerLink]="['/auth']">
+          <a class="dropdown-item" [routerLink]="['/register']">
             <i class="tim-icons icon-bullet-list-67"> </i> settings
           </a>
           <a class="dropdown-item" (click)=" onLogOut()"  [routerLink]="['/auth']">
@@ -118,7 +112,7 @@ id="navbar-top"
       <li class="nav-item">
         <a
           class="nav-link"
-          href="https://github.com/creativetimofficial/blk-design-system-angular/issues"
+          [routerLink]="['']"
         >
           Explore Movies
         </a>
@@ -128,52 +122,130 @@ id="navbar-top"
 </div>
 </nav>
 
-   <div class="wrapper">
-     <div class="page-header header-filter">
-       <div class="squares square1"></div>
-       <div class="squares square2"></div>
-       <div class="squares square3"></div>
-       <div class="squares square4"></div>
-       <div class="squares square5"></div>
-       <div class="squares square6"></div>
-       <div class="squares square7"></div>
-       <div class="container">
-         <div #load_target style="margin-top: 40%;" >
-           <app-searchbar ></app-searchbar>
-         </div>
-       </div>
-     </div>
-     <div style="margin-bottom: 10%;" class="main">
-       <div class="section section-basic" id="basic-elements">
-         <img class="path" src="assets/img/path1.png" />
-         <div class="container">
-          <div 
-          fxLayout="row wrap" 
-          fxLayout.lt-sm="column" 
-          fxLayoutGap="32px" 
-          fxLayoutAlign="flex-start">
-          
-          <!-- dummy loop -->
-           <!-- <ng-container *ngFor="let _ of [1,2,3,4,5,6, 7,8,9]">
-             <app-card 
-               fxFlex="0 1 calc(33.3% - 32px)"
-               fxFlex.lt-md="0 1 calc(50% - 32px)"
-               fxFlex.lt-sm="100%"
-             ></app-card>
-           </ng-container> -->
-           <ng-container *ngFor="let movie of movieList">
-            <app-card 
-              (click)="onMovieDetail(movie)"
-              [movie]="movie"
-              fxFlex="0 1 calc(33.3% - 32px)"
-              fxFlex.lt-md="0 1 calc(50% - 32px)"
-              fxFlex.lt-sm="100%"
-            ></app-card>
-          </ng-container>
+<div class="wrapper">
+  <div class="page-header header-filter">
+        <div class="squares square1"></div>
+        <div class="squares square2"></div>
+        <div class="squares square3"></div>
+        <div class="squares square4"></div>
+        <div class="squares square5"></div>
+        <div class="squares square6"></div>
+        <div class="squares square7"></div>
+        <div class="container">
+            <div class="content-center brand">
+
+              <div>
+                <ngx-loading-x [show]="load"></ngx-loading-x>
+              </div>
+
+            </div>
         </div>
-      </div>
- 
-      <footer class="footer">
+    </div>
+
+
+    <div   class="section section-nucleo-icons">
+        <form [formGroup]="form" class="form">
+            <img class="path" src="assets/img/path3.png" />
+    
+            <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12">
+                <h2 style="margin-bottom: 20%;"  class="title">Post New Movie Review</h2>
+                <div id="inputs">
+                    <h3>Details</h3>
+                    <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                            <div class="form-group">
+                            <input
+                                formControlName="title"
+                                class="form-control"
+                                placeholder="Title"
+                                type="text"
+                                (focus)="focus1 = true"
+                                (blur)="focus1 = false"
+                            />
+                            </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                    </div>
+                    <div class="col-sm-6 col-lg-6">
+                        <div class="form-group">
+                        <input
+                            formControlName="description"
+                            class="form-control"
+                            placeholder="Description"
+                            type="text"
+                            (focus)="focus1 = true"
+                            (blur)="focus1 = false"
+                        />
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 15%;" [hidden]="imageAddBtn" class="btn-wrapper">
+                    <a
+                    class="btn btn-danger btn-round mr-1"
+                    target="_blank"
+                    >
+                      <input 
+                      hidden
+                      #imageInput
+                      class="custom-file-input"
+                      type="file"
+                      accept="image/*"
+                      (focusout)="addAnImage()"
+                      (blur)="addAnImage()"
+                      (change)="processFile(imageInput)">
+                      <button 
+                      (focusout)="addAnImage()"
+                      (blur)="addAnImage()"
+                      class="btn btn-danger btn-round mr-1" 
+                      (click)="imageInput.click()"> upload file</button>
+                    </a>
+                  </div>
+                </div>
+
+            </div>
+            <div style="margin-bottom: 15%;" class="blur-hover" *ngIf="imageAdded && selectedFile.src" >
+                <div   *ngIf="imageAdded && selectedFile.src" class="row justify-content-center">
+                  <a
+                  class="btn btn-success mr-1"
+                  style="margin-top: 10%;"
+                  (click)="onSubmit()"
+                  >
+                  Post Movie Review 
+                  </a>
+                </div>
+
+                <a
+                class="text-danger"
+                >
+                <div style="margin-bottom: 10%;" class="icons-container blur-item on-screen mt-5">
+                    
+                    <div class="container text-center">
+
+                        <a [routerLink]="['/landing']">
+                        <img
+                            style="max-width: 435px; max-height:633px"
+                            *ngIf="selectedFile.src"
+                            alt="Image"
+                            class="img-raised"
+                            [src]="selectedFile.src"
+                        />
+                        </a>
+                    </div>
+                </div>
+                <span (click)="imageInput.click()" style="font-weight: bolder;" class="blur-hidden h5 text-danger">
+                    Add a different Poster
+                </span>
+                </a>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+    <footer class="footer">
         <div class="container">
           <div class="row">
             <div class="col-md-3"><h1 class="title">Movie Rater•</h1></div>
@@ -246,9 +318,6 @@ id="navbar-top"
           </div>
         </div>
       </footer>
-   </div>
+</div>
+<ngx-spinner></ngx-spinner>
 
-
-
-
-   

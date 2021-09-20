@@ -1,7 +1,9 @@
 import { MoviesService } from './movies.service';
 import { AuthService } from './../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @Component({
   selector: 'app-board',
@@ -9,6 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  isCollapsed = true;
+  focus;
+  focus1;
+  focus2;
+  date = new Date();
+  pagination = 3;
+  pagination1 = 1;
+
+
+
   movieList;
   movieDetail;
 
@@ -20,12 +32,32 @@ export class BoardComponent implements OnInit {
     private authservice: AuthService,
     private movieService: MoviesService,
     private router: Router ,
-  ) {
+  ) {}
 
+  scrollToDownload(element: any) {
+    element.scrollIntoView({ behavior: "smooth" });
   }
+  @ViewChild('load_target') div; 
+  
 
   ngOnInit(): void {
+    
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.add("index-page");
+
     this.onloadMovies();
+  }
+
+  ngAfterViewInit(){
+    this.scroll(this.div)
+  }
+
+
+
+
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
   }
 
 
@@ -71,7 +103,22 @@ export class BoardComponent implements OnInit {
     this.movieDetail = data;
     this.postDetail = true;
     this.addingMovie = true;
+    console.log('board page movie data', data)
+    this.router.navigate(['/movie-detail'], {queryParams: data})
 
   }
+
+
+
+  name = 'Angular';
+
+
+
+
+  ngOnDestroy() {
+    var body = document.getElementsByTagName("body")[0];
+    body.classList.remove("index-page");
+  }
+
 
 }

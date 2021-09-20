@@ -1,0 +1,22 @@
+<div 
+  gdAreas="header header | side content | footer footer"
+  gdRows="auto auto auto"
+  gdRows.lt-md="auto auto auto auto"
+  gdAreas.lt-md="header | side | content | footer"
+  gdGap="16px"
+  >
+    <div class="card">
+        <img [src]="movie.moviesimage_set[0].image">
+		<!-- <ik-image [src]="movie.moviesimage_set[0].image" transformation={transform}></ik-image> -->
+        <div class="title">{{movie.title}}
+			<figcaption style="margin-left: 15px;">
+				<div >
+				  <i  [ngClass]="{'light-green': movie.avg_rating > 1}" class="material-icons">star</i>
+				  <i  [ngClass]="{'light-green': movie.avg_rating > 2}" class="material-icons">star</i>
+				  <i  [ngClass]="{'light-green': movie.avg_rating > 3}" class="material-icons">star</i>
+				  <i  [ngClass]="{'light-green': movie.avg_rating > 5}" class="material-icons">star</i>
+				</div>
+			</figcaption>
+		</div>
+      </div>   
+</div>

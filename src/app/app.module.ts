@@ -32,8 +32,17 @@ import { CarouselModule } from "ngx-bootstrap/carousel";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { JwBootstrapSwitchNg2Module } from "jw-bootstrap-switch-ng2";
 import { PopoverModule } from "ngx-bootstrap/popover";
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardComponent } from './board/card/card.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchbarComponent } from './board/searchbar/searchbar.component';
+import { ImagekitioAngularModule } from 'imagekitio-angular';
+import { PostmovieReviewComponent } from './board/postmovie-review/postmovie-review.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgxLoadingXModule } from 'ngx-loading-x';
+import { ProfileComponent } from './board/profile/profile.component';
+import { MovieCardDetailComponent } from './board/movie-detail/movie-card-detail/movie-card-detail.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -44,7 +53,13 @@ import { PopoverModule } from "ngx-bootstrap/popover";
     MovieDetailComponent,
     NewpostComponent,
     LandingpageComponent,
-    AuthComponent
+    AuthComponent,
+    CardComponent,
+    SearchbarComponent,
+    PostmovieReviewComponent,
+    ProfileComponent,
+    MovieCardDetailComponent
+
   ],
   imports: [
     BrowserModule,
@@ -61,6 +76,8 @@ import { PopoverModule } from "ngx-bootstrap/popover";
     AuthModule,
     CommonModule,
     BrowserModule,
+    NgxSpinnerModule,
+    MatProgressSpinnerModule,
     FormsModule,
     RouterModule,
     BsDropdownModule.forRoot(),
@@ -74,7 +91,16 @@ import { PopoverModule } from "ngx-bootstrap/popover";
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
     CarouselModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgbModule,
+    FlexLayoutModule,
+    ImagekitioAngularModule.forRoot({
+      publicKey:"bso4or00jav",
+      urlEndpoint: "https://ik.imagekit.io/bso4or00jav/",
+      authenticationEndpoint: '',
+    }),
+    NgxLoadingXModule,
+   
 
   ],
   providers: [AuthGuard],
