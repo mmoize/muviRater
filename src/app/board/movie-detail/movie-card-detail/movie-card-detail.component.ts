@@ -17,6 +17,7 @@ export class MovieCardDetailComponent implements OnInit {
 
 
   @Input() movie;
+  @Input() movieSearched = false;
   movieD;
   cardMovieDetail;
   rateHovered = 0;
@@ -31,6 +32,9 @@ export class MovieCardDetailComponent implements OnInit {
   
 
   ngOnInit(): void {
+
+    console.log("searched moveie", this.movie)
+    console.log("searched moveie", this.movieSearched)
 
     if (!this.movie) {
       this.router.navigate([''])

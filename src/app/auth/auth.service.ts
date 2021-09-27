@@ -22,13 +22,11 @@ export class AuthService {
 
   private _usertoken = new BehaviorSubject<User>(null);
 
-  // tslint:disable-next-line: variable-name
   private _user = new BehaviorSubject<User>(null);
 
 
-  // tslint:disable-next-line: variable-name
   private _userIsAuthenticated = false;
-  // tslint:disable-next-line: variable-name
+
   private activeLogoutTimer: any;
 
   get UserId() {
@@ -165,6 +163,8 @@ export class AuthService {
     ).pipe(tap(this.setUserData.bind(this)));
   }
 
+
+
   logout() {
     if (this.activeLogoutTimer) {
       clearTimeout(this.activeLogoutTimer);
@@ -174,7 +174,7 @@ export class AuthService {
   }
 
   getTokenExpirationDate(token: string): Date {
-    // const decoded = jwt_decode(token);
+
     var decoded = jwt_decode(token);
     if (decoded['exp']=== undefined) { return null; }
     const date  = new Date(0);

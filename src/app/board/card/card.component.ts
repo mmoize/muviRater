@@ -9,10 +9,12 @@ export class CardComponent implements OnInit {
 
 
   @Input() movie;
+  @Input() searchedMovie;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log("from searched activity")
   }
 
   transform = [{ height: "100", width: "100" }];

@@ -1,13 +1,24 @@
 
  <main>
 	<div class="container">
-		<h1>Fancy a Search? </h1>
-		<h2>Try below!</h2>
+		<h1 *ngIf="!currentlySearching">Fancy a Search? </h1>
+		<h2 *ngIf="!currentlySearching">Try below!</h2>
 		<div class="search-box">
 			<div class="search-icon"><i class="fa fa-search search-icon"></i></div>
-			<form action="" class="search-form">
+			<!-- <form action="" class="search-form">
 				<input type="text" placeholder="Search" id="search" autocomplete="off">
-			</form>
+			</form> -->
+			<input 
+			id="search"
+			placeholder="Search Movies" 
+			type="text" 
+			(focus)="searchInProgress()"
+			(focusout)="searchNotInProgress()"
+			(focusout)="getSearchResults()"
+			class="form-control" 
+			[(ngModel)]="query"
+			(keyup.enter)="getSearchResults() "
+			>
 			<svg class="search-border" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" viewBox="0 0 671 111" style="enable-background:new 0 0 671 111;"
 			 xml:space="preserve">
           <path class="border" d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"/>
@@ -18,3 +29,4 @@
 
 	</div>
 </main>
+<ngx-spinner></ngx-spinner>

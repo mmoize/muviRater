@@ -47,7 +47,7 @@ id="navbar-top"
       placement="bottom"
       tooltip="Front=End: Angular and Back-End: Python"
     >
-      <span> Movie Rater• </span> FrontEnd-Angular
+      <span> Movie Rater• </span> 
     </a>
     <button
       aria-controls="navigation-index"
@@ -166,25 +166,33 @@ id="navbar-top"
         <div class="squares square5"></div>
         <div class="squares square6"></div>
         <div class="squares square7"></div>
-        <!-- <div   class="container">
-            <div   class="content-center brand">
 
+        <div *ngIf="!movieSearched" style="margin-top: 3%;"  class="main">
+
+          <div   class="container">
+            <div   class="content-center brand">
+    
               <app-movie-card-detail   [movie]="cardMovieDetail"></app-movie-card-detail>
             </div>
+            </div>
+           <!-- <ngb-rating [max]="5" [(rate)]="starRating" (click)="rateClicked(starRating)" [readonly]="false"></ngb-rating> -->
+    
         </div>
-        <ngb-rating [max]="5" [(rate)]="starRating" (click)="rateClicked(starRating)" [readonly]="false"></ngb-rating> -->
-    </div>
-
-
-    <div   class="section section-nucleo-icons">
-
-      <div   class="container">
-        <div   class="content-center brand">
-
-          <app-movie-card-detail   [movie]="cardMovieDetail"></app-movie-card-detail>
+    
+    
+    
+        <div *ngIf="movieSearched" style="margin-top: 0%;"   class="main">
+    
+          <div   class="container">
+            <div   class="content-center brand">
+    
+              <app-movie-card-detail [movieSearched]="movieSearched" [movie]="searchedMovie"></app-movie-card-detail>
+            </div>
+            </div>
+           <!-- <ngb-rating [max]="5" [(rate)]="starRating" (click)="rateClicked(starRating)" [readonly]="false"></ngb-rating> -->
+    
         </div>
-        </div>
-       <!-- <ngb-rating [max]="5" [(rate)]="starRating" (click)="rateClicked(starRating)" [readonly]="false"></ngb-rating> -->
+
 
     </div>
 

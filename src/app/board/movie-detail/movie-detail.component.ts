@@ -2,6 +2,9 @@ import { MoviesService } from './../movies.service';
 import { Component, Input, OnInit } from '@angular/core';
 import noUiSlider from "nouislider";
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { MovieDetail } from 'src/app/models/Movie';
+
 
 @Component({
   selector: 'app-movie-detail',
@@ -11,6 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailComponent implements OnInit {
 
   starRating = 0;
+
+ searchedMovie:  Observable<MovieDetail>;
+ movieSearched = false;
 
   isCollapsed = true;
   focus;
@@ -29,12 +35,26 @@ export class MovieDetailComponent implements OnInit {
     private route: ActivatedRoute
   ) { 
     this.route.queryParams.subscribe(params => {
-      this.movieDetail = params
-      console.log("movie details page 112", this.movieDetail);
-      this.movieservice.getMovie(this.movieDetail.id).subscribe(movieData => {
-        console.log("movie details page 1123", movieData);
-        this.cardMovieDetail = movieData
-      })
+      console.log('imbid', params.imdbID)
+      if (params.imdbID != undefined) {
+        this.movieSearched = true;
+        console.log('imbid n', params.imdbID)
+        this.movieservice.getMovieDetails(params.imdbID).subscribe(resData => {
+          console.log("search in progress insde request detail", resData);
+          this.searchedMovie = resData;
+        });
+
+      } else {
+
+        this.movieSearched = false;
+
+        this.movieDetail = params
+
+        this.movieservice.getMovie(this.movieDetail.id).subscribe(movieData => {
+          this.cardMovieDetail = movieData
+        })
+      }
+
     })
   }
 

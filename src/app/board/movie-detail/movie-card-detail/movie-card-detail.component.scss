@@ -20,7 +20,8 @@ body {
 }
 .cellphone-container{  
   width:375px;
-  height:650px;
+  //height:650px;
+  height: fit-content;
   background-color:#1e1b26;
   margin : 60px auto 0 auto;
   box-shadow:5px 5px 115px -14px black;
@@ -71,7 +72,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
   background-size: cover;
   z-index:1 !important;
   width:375px;
-  height:660px;
+  //height:660px;
+  height: fit-content;
   display:block;
   border-radius:4px;
 }

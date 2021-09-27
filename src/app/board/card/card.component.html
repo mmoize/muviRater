@@ -5,18 +5,29 @@
   gdAreas.lt-md="header | side | content | footer"
   gdGap="16px"
   >
-    <div class="card">
-        <img [src]="movie.moviesimage_set[0].image">
-		<!-- <ik-image [src]="movie.moviesimage_set[0].image" transformation={transform}></ik-image> -->
+      <div *ngIf="!searchedMovie" class="card">
+        <img  [src]="movie.moviesimage_set[0].image">
+		    <!-- <ik-image [src]="movie.moviesimage_set[0].image" transformation={transform}></ik-image> -->
         <div class="title">{{movie.title}}
-			<figcaption style="margin-left: 15px;">
-				<div >
-				  <i  [ngClass]="{'light-green': movie.avg_rating > 1}" class="material-icons">star</i>
-				  <i  [ngClass]="{'light-green': movie.avg_rating > 2}" class="material-icons">star</i>
-				  <i  [ngClass]="{'light-green': movie.avg_rating > 3}" class="material-icons">star</i>
-				  <i  [ngClass]="{'light-green': movie.avg_rating > 5}" class="material-icons">star</i>
-				</div>
-			</figcaption>
-		</div>
-      </div>   
+          <figcaption style="margin-left: 15px;">
+            <div >
+              <i  [ngClass]="{'light-green': movie.avg_rating > 1}" class="material-icons">star</i>
+              <i  [ngClass]="{'light-green': movie.avg_rating > 2}" class="material-icons">star</i>
+              <i  [ngClass]="{'light-green': movie.avg_rating > 3}" class="material-icons">star</i>
+              <i  [ngClass]="{'light-green': movie.avg_rating > 5}" class="material-icons">star</i>
+            </div>
+          </figcaption>
+        </div>
+     </div>   
+
+
+    <div *ngIf="searchedMovie" class="card">
+      <img  [src]="movie.Poster">
+      <div class="title">{{movie.Title}}
+      <figcaption style="margin-left: 15px;">
+      </figcaption>
+      </div>
+    </div>   
+
+
 </div>

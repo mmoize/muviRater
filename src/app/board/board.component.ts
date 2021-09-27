@@ -1,9 +1,12 @@
 import { MoviesService } from './movies.service';
 import { AuthService } from './../auth/auth.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable} from 'rxjs';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { Movie } from '../models/Movie';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-board',
@@ -11,6 +14,13 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+
+  query: string;
+  movies$: Observable<Array<Movie>>;
+  newlySearchedMovies;
+  newSearchedMovies = false;
+  
+
   isCollapsed = true;
   focus;
   focus1;
@@ -32,6 +42,7 @@ export class BoardComponent implements OnInit {
     private authservice: AuthService,
     private movieService: MoviesService,
     private router: Router ,
+    private spinner: NgxSpinnerService,
   ) {}
 
   scrollToDownload(element: any) {
@@ -41,6 +52,7 @@ export class BoardComponent implements OnInit {
   
 
   ngOnInit(): void {
+    console.log("check for newly search movies", this.newlySearchedMovies)
     
     var body = document.getElementsByTagName("body")[0];
     body.classList.add("index-page");
@@ -110,8 +122,13 @@ export class BoardComponent implements OnInit {
 
 
 
-  name = 'Angular';
-
+  showSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigate([''])
+    }, 4000);
+  }
 
 
 
@@ -119,6 +136,31 @@ export class BoardComponent implements OnInit {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("index-page");
   }
+
+
+  searchedMovies(value) {
+    this.newSearchedMovies =
+    this.newlySearchedMovies = value
+    console.log("its the searched results", this.newlySearchedMovies)
+    if (this.newlySearchedMovies == undefined) {
+      console.log("its the searched results true or false", this.newSearchedMovies)
+      this.newSearchedMovies = false;
+    }else {
+      this.newSearchedMovies =true
+    }
+  }
+
+
+  returnTOMovieExple() {
+    this.newSearchedMovies = false
+  }
+
+
+  searchedMovieDetail(movie) {
+    console.log("imbid 1", movie.imdbID)
+    this.router.navigate(['/movie-detail'], {queryParams: movie})
+  }
+
 
 
 }

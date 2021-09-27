@@ -107,21 +107,15 @@ id="navbar-top"
           <a class="dropdown-item" [routerLink]="['/profile']">
             <i class="tim-icons icon-single-02"> </i> Profile
           </a>
-          <a class="dropdown-item" [routerLink]="['/auth']">
-            <i class="tim-icons icon-bullet-list-67"> </i> settings
-          </a>
           <a class="dropdown-item" (click)=" onLogOut()"  [routerLink]="['/auth']">
             <i class="tim-icons icon-image-02"> </i> Logout
           </a>
         </div>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          href="https://github.com/creativetimofficial/blk-design-system-angular/issues"
-        >
-          Explore Movies
-        </a>
+        <button *ngIf="newSearchedMovies" (click)="returnTOMovieExple()" class="btn btn-primary btn-simple btn-round" type="button">
+          Return to Explore Movies
+        </button>
       </li>
     </ul>
   </div>
@@ -139,7 +133,7 @@ id="navbar-top"
        <div class="squares square7"></div>
        <div class="container">
          <div #load_target style="margin-top: 40%;" >
-           <app-searchbar ></app-searchbar>
+           <app-searchbar (searchedItems)="searchedMovies($event)" ></app-searchbar>
          </div>
        </div>
      </div>
@@ -147,106 +141,45 @@ id="navbar-top"
        <div class="section section-basic" id="basic-elements">
          <img class="path" src="assets/img/path1.png" />
          <div class="container">
-          <div 
+          <div
+          *ngIf="newSearchedMovies"
           fxLayout="row wrap" 
           fxLayout.lt-sm="column" 
           fxLayoutGap="32px" 
           fxLayoutAlign="flex-start">
-          
-          <!-- dummy loop -->
-           <!-- <ng-container *ngFor="let _ of [1,2,3,4,5,6, 7,8,9]">
-             <app-card 
-               fxFlex="0 1 calc(33.3% - 32px)"
-               fxFlex.lt-md="0 1 calc(50% - 32px)"
-               fxFlex.lt-sm="100%"
-             ></app-card>
-           </ng-container> -->
-           <ng-container *ngFor="let movie of movieList">
+      
+            <ng-container *ngFor="let movie of newlySearchedMovies ">
+              <app-card 
+                (click)="searchedMovieDetail(movie)"
+                [movie]="movie"
+                [searchedMovie]="newSearchedMovies"
+                fxFlex="0 1 calc(33.3% - 32px)"
+                fxFlex.lt-md="0 1 calc(50% - 32px)"
+                fxFlex.lt-sm="100%"
+              ></app-card>
+            </ng-container>
+        </div>
+
+        <div 
+        *ngIf="!newSearchedMovies"
+        fxLayout="row wrap" 
+        fxLayout.lt-sm="column" 
+        fxLayoutGap="32px" 
+        fxLayoutAlign="flex-start">
+    
+          <ng-container *ngFor="let movie of movieList">
             <app-card 
               (click)="onMovieDetail(movie)"
+              [searchedMovie]="newSearchedMovies"
               [movie]="movie"
               fxFlex="0 1 calc(33.3% - 32px)"
               fxFlex.lt-md="0 1 calc(50% - 32px)"
               fxFlex.lt-sm="100%"
             ></app-card>
           </ng-container>
-        </div>
       </div>
- 
-      <footer class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3"><h1 class="title">Movie Rater•</h1></div>
-            <div class="col-md-3">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/home']"> Home </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/landing']"> Landing </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/register']"> Register </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/profile']"> Profile </a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://creative-tim.com/contact-us?ref=blkdsa-footer">
-                    Contact Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://creative-tim.com/about-us?ref=blkdsa-footer">
-                    About Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://creative-tim.com/blog?ref=blkdsa-footer">
-                    Blog
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://opensource.org/licenses/MIT">
-                    License
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-3">
-              <h3 class="title">Follow Me:</h3>
-              <div class="btn-wrapper profile">
-                <a
-                  class="btn btn-icon btn-neutral btn-round btn-simple mr-1"
-                  href="https://twitter.com/moise_murhi"
-                  target="_blank"
-                >
-                  <i class="fab fa-twitter"> </i>
-                </a>
-                <a
-                  class="btn btn-icon btn-neutral btn-round btn-simple mr-1"
-                  href="https://github.com/mmoize"
-                  target="_blank"
-                >
-                  <i class="fab fa-github-square"> </i>
-                </a>
-                <a
-                  class="btn btn-icon btn-neutral btn-round btn-simple"
-                  href="https://dribbble.com/creativetim"
-                  target="_blank"
-                >
-                  <i class="fab fa-instagram"> </i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-   </div>
+  </div>
+</div>
 
 
 

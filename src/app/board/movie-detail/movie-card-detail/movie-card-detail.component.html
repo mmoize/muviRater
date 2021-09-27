@@ -1,6 +1,6 @@
 <div  class="container">
     <div class="cellphone-container">    
-        <div class="movie">       
+        <div *ngIf="!movieSearched" class="movie">       
           <div class="menu"><i class="material-icons"></i></div>
           <div class="movie-img"  [style.background-image]="movie.moviesimage_set[0].image" >
             <img [src]="movie.moviesimage_set[0].image">
@@ -45,5 +45,53 @@
             </div>
           </div>
         </div>
+
+        <div *ngIf="movieSearched" class="movie">       
+          <div class="menu"><i class="material-icons"></i></div>
+          <div class="movie-img" style="height: fit-content; width: 100%;"  [style.background-image]="movie.Poster" >
+            <img class="movie-img" style="height: fit-content; width: 100%;" [src]="movie.Poster">
+          </div>
+          
+          <div class="text-movie-cont">
+            <div class="mr-grid">
+                <div class="col1">
+                    <h1>{{ movie.Title }}</h1>
+                    <ul class="movie-gen">
+                    <!-- <li>PG-13  /</li>
+                    <li>2h 49min  /</li>
+                    <li>Adventure, Drama, Sci-Fi,</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="mr-grid summary-row">
+              <div class="col2">
+                <h5>SUMMARY</h5>
+              </div>
+              <div class="col2">
+                 <!-- <ul class="movie-likes">
+                  <li><i class="material-icons">&#xE813;</i>124</li>
+                  <li><i class="material-icons">&#xE813;</i>3</li>
+                </ul> -->
+                <div class="card-body">
+                  <ngb-rating [max]="5" [(rate)]="displayrating"  [readonly]="true"></ngb-rating>
+                  <!-- <p *ngIf="movie.no_of_ratings > 0" >  number of votes : {{movie.no_of_ratings}} </p> -->
+                </div>
+              </div>
+            </div>
+            <div class="mr-grid">
+              <div class="col1">
+                <p class="movie-description">{{movie.Plot}} </p>
+              </div>
+            </div>
+            <div class="mr-grid action-row">
+              <div>
+                <h5 style="font-weight: bold;" class="card-title">give it a rate</h5>
+              </div>
+              <ngb-rating  (hover)="hovered=$event" (leave)="hovered=0"  [max]="5" [(rate)]="starRating" (click)="rateClicked()" [readonly]="false"></ngb-rating>
+            </div>
+          </div>
+        </div>
+
+
     </div>
   </div>
