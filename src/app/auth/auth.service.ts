@@ -143,7 +143,6 @@ export class AuthService {
         if (user) {
 
           this._user.next(user);
-          //this.autoLogout(user.tokenDuration);
         }
       }),
       map(user => {
@@ -206,7 +205,6 @@ export class AuthService {
       userData.token = theToken,
     );
     this._user.next(user);
-    //this.autoLogout(user.tokenDuration);
     this.storeAuthData(userData.user_id, userData.username, userData.email, userData.token);
   }
 
