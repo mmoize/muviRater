@@ -98,6 +98,9 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
+              "src/img/favicon-32x32.png",
+              "src/img/favicon-16x16.png",
+              "src/img/apple-touch-icon.png",
               "src/assets",
               "src/manifest.webmanifest"
             ],
